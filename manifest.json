@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "Remote NetiaPlater",
+  "description": "descritpinl",
+  "version": "0.0",
+
+  "permissions": [
+    "http://*/*"
+  ],
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+      "scripts": ["background.js"]
+  }
+}
