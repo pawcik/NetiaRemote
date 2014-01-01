@@ -8,6 +8,7 @@
   "permissions": [
     "http://*/*"
   ],
+  "options_page": "options.html",
   "browser_action": {
     "default_popup": "popup.html"
   },

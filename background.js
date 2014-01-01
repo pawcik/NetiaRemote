@@ -1,11 +1,14 @@
+var getHost = function() {
+    return localStorage["host"] + ":" + localStorage["port"];
+}
+
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-      doAjax("http://192.168.1.2:5678/remote.control", request, function(res) {
+      doAjax("http://" + getHost() + "/remote.control", request, function(res) {
           sendResponse({status: res});
           console.log(res);
       });
   });
-
 
 function doAjax(url, data, callback) {
     var xmlhttp = new XMLHttpRequest();
