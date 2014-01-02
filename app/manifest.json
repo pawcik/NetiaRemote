@@ -1,0 +1,17 @@
+{
+  "name": "NetiaPlayer discovery",
+  "description": "Discover netia player in your local network",
+  "version": "0.0",
+  "app": {
+      "background": {
+          "scripts": ["background.js"]
+      }
+  },
+  "permissions": [
+      {"socket": [
+          "udp-send-to",
+          "udp-bind",
+          "udp-multicast-membership"
+      ]}
+  ]
+}
