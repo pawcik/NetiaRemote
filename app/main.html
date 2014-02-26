@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Remote NetiaPlayer</title>
+    <meta charset="utf-8">
+    <script src="js/jquery-1.11.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>View on TV in your living room</h1>
+      <section id="video-meta">
+        <dl class="dl-horizontal">
+          <dt></dt>
+          <dd></dd>
+        </dl>
+      </section>
+
+      <output class="console">
+        <div class="progress"></div>
+        <div class="controller"></div>
+      </output>
+
+      <h2>Debugging...</h2>
+      <button id="root">start searching root devices</button>
+      <button id="webintents">start searching webintents devices</button>
+      <output class="debug"></output>
+    </div>
+
+    <script src="js/discovery.js"></script>
+    <script src="js/netia_controller.js"></script>
+    <script src="js/init.js"></script>
+
+  </body>
+</html>
