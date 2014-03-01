@@ -1,8 +1,28 @@
 var Discovery;
 
 (function(){
-    Discovery = function(){
-        
+    Discovery = function(){}
+
+    var parse = function(data) {
+        var arr = data.replace(/\r\n|\r/g, "\n").split("\n"), ret = {};
+
+        for(var i = 0, l = arr.length; i < l; i++ ) {
+            var a = arr[i].split(":");
+            var k = a[0].toLowerCase();
+            var v = a.slice(1).join(":").replace(/^\s*/, "");
+
+            if(k === "location") {
+                url = document.createElement('a');
+                url.href = v;
+                ret['host'] = url.hostname;
+                ret['port'] = url.port;
+            }
+
+            if(!!v) {
+                ret[k] = v;
+            }
+        }
+        return ret;
     }
 
     Discovery.prototype.start = function(callback) {
@@ -11,8 +31,8 @@ var Discovery;
         upnp.onready = function() {
             upnp.search('urn:netgem:RemoteControlServer:1', function(data) {
                 console.log(data);
-                //self.parse(data);
-                callback(data);
+                device = parse(data);
+                callback(device);
             });
         }
     }

@@ -12,6 +12,7 @@
           "udp-send-to",
           "udp-bind",
           "udp-multicast-membership"
-      ]}
+      ]}, 
+      "http://*/"
   ]
 }
