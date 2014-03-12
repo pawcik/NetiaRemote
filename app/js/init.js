@@ -14,3 +14,15 @@ $("button#volumeUp").bind("click", function(e){
 $("button#volumeDown").bind("click", function(e){
     controller.volumeDown();
 })
+$("button#next").bind("click", function(e){
+    controller.next();
+})
+$("button#prev").bind("click", function(e){
+    controller.prev();
+})
+$("button#channelUp").bind("click", function(e){
+    controller.channelUp();
+})
+$("button#channelDown").bind("click", function(e){
+    controller.channelDown();
+})

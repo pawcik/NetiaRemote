@@ -2,13 +2,29 @@ var NetiaController;
 
 (function() {
 
+    var that = this;
+
     var target = function(host, port) {
         return 'http://' + host + ':' + port + '/remote.control';
     }
 
-    function sendKeyAction(data) {
+    var sendKeyAction = function(data) {
         return '<action name=\"send_key\">' + data + '</action>';
     }
+
+    function toCammelCase(string) {
+        return string.replace(/[-_](.)/g, function(match, gr1) { 
+            return gr1.toUpperCase(); 
+        });
+    }
+
+    var actions = [
+        "volume_up",
+        "volume_down",
+        "channel_up",
+        "channel_down",
+        "next",
+        "prev"];
 
     NetiaController = function(host, port) {
         this.host = host;
@@ -22,11 +38,12 @@ var NetiaController;
         });
     }
 
-    NetiaController.prototype.volumeUp = function() {
-        this.sendAction('volume_up');
-    }
-    NetiaController.prototype.volumeDown = function() {
-        this.sendAction('volume_down');
+    for(var i = 0; i < actions.length; i++) {
+        NetiaController.prototype[toCammelCase(actions[i])] = (function (action) {
+            return function () {
+                this.sendAction(action);
+            }
+        })(actions[i]);
     }
 
 }());
