@@ -8,27 +8,18 @@
   <body>
     <div class="container">
       <h1>Remote for your netia player</h1>
-
+      Host: <input type="text" id="host">
+      Port: <input type="text" id="port" value="5678">
+      <button id="custom_controller">Save</button>
+      <button id="discovery">or discover netia player</button>
       <output class="console">
         <div class="progress"></div>
         <div class="controller"></div>
       </output>
-
-      <button id="root">find your netia player</button>
-      <h1>Control it</h1>
-      <button id="volumeUp">volume up</button>
-      <button id="volumeDown">volume down</button>
-      <button id="next">next</button>
-      <button id="prev">prev</button>
-      <button id="channelUp">channel up</button>
-      <button id="channelDown">channel down</button>
-      
-      <output class="result"></output>
     </div>
 
     <script src="js/discovery.js"></script>
     <script src="js/netia_controller.js"></script>
     <script src="js/init.js"></script>
-
   </body>
 </html>

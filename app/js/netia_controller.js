@@ -4,11 +4,11 @@ var NetiaController;
 
     var that = this;
 
-    var target = function(host, port) {
+    var getTargetAddress = function(host, port) {
         return 'http://' + host + ':' + port + '/remote.control';
     }
 
-    var sendKeyAction = function(data) {
+    var getSendActionCommand = function(data) {
         return '<action name=\"send_key\">' + data + '</action>';
     }
 
@@ -19,12 +19,35 @@ var NetiaController;
     }
 
     var actions = [
-        "volume_up",
-        "volume_down",
-        "channel_up",
-        "channel_down",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "back",
+        "blue",
+        "delete",
+        "fullscreen",
+        "green",
+        "menu",
+        "mute",
         "next",
-        "prev"];
+        "on_off",
+        "play_pause",
+        "prev",
+        "rec",
+        "red",
+        "volume_down",
+        "volume_up",
+        "yellow",
+        "channel_up",
+        "channel_down"
+        ];
 
     NetiaController = function(host, port) {
         this.host = host;
@@ -33,13 +56,13 @@ var NetiaController;
 
     NetiaController.prototype.sendAction = function(value) {
         $.ajaxSetup({contentType: "text/xml"})
-        $.post( target(this.host, this.port), sendKeyAction(value), function(data) {
+        $.post( getTargetAddress(this.host, this.port), getSendActionCommand(value), function(data) {
             console.log(data.documentElement);
         });
     }
 
     for(var i = 0; i < actions.length; i++) {
-        NetiaController.prototype[toCammelCase(actions[i])] = (function (action) {
+        NetiaController.prototype[toCammelCase("sendKey_" + actions[i])] = (function (action) {
             return function () {
                 this.sendAction(action);
             }

@@ -1,28 +1,29 @@
 
 var d = new Discovery();
 var controller;
-$("button#root").bind("click", function(e){
+$("button#discovery").bind("click", function(e){
   d.start(function(data) {
-      $("output .controller").append(data.host).append("<br/>");
+      $("output .progress").append(data.host).append("<br/>");
       controller = new NetiaController(data.host, data.port);
+      fillActions($("output .controller"), controller);
   });
 })
 
-$("button#volumeUp").bind("click", function(e){
-    controller.volumeUp();
+$("button#custom_controller").bind("click", function(e){
+    var host = $("input#host").val();
+    var port = $("input#port").val();
+    controller = new NetiaController(host, port);
+    $("output .progress").append(host + ":" + port).append("<br/>");
+    fillActions($("output .controller"), controller);
 })
-$("button#volumeDown").bind("click", function(e){
-    controller.volumeDown();
-})
-$("button#next").bind("click", function(e){
-    controller.next();
-})
-$("button#prev").bind("click", function(e){
-    controller.prev();
-})
-$("button#channelUp").bind("click", function(e){
-    controller.channelUp();
-})
-$("button#channelDown").bind("click", function(e){
-    controller.channelDown();
-})
+
+
+var fillActions = function(div, controller) {
+    div.empty();
+    for (var action in controller) {
+        if (action.indexOf("sendKey") == 0 ) {
+            div.append('<button id="' + action + '">' + action + '</button>');
+            div.find("button#"+action).bind("click", function(e) { controller[action](); })
+        }
+    }
+}
