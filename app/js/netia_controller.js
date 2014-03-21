@@ -62,11 +62,11 @@ var NetiaController;
     }
 
     for(var i = 0; i < actions.length; i++) {
-        NetiaController.prototype[toCammelCase("sendKey_" + actions[i])] = (function (action) {
+        NetiaController.prototype[toCammelCase("sendKey_" + actions[i])] = (function (index) {
             return function () {
-                this.sendAction(action);
-            }
-        })(actions[i]);
+                this.sendAction(index.action);
+            };
+        })({'action': actions[i]});
     }
 
 }());
