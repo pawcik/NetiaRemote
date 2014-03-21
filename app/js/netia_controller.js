@@ -46,7 +46,12 @@ var NetiaController;
         "volume_up",
         "yellow",
         "channel_up",
-        "channel_down"
+        "channel_down",
+        "ok",
+        "left",
+        "right",
+        "up",
+        "down"
         ];
 
     NetiaController = function(host, port) {
