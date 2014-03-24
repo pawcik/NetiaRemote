@@ -21,14 +21,14 @@ $("button#custom_controller").bind("click", function(e){
 var fillActions = function(div, controller) {
     var that = this;
     div.empty();
-    document.getElementsByClassName("controller")[0].onclick = function(e) {
-        that.controller[e.srcElement.getAttribute('id')]();
-    };
     for (var action in controller) {
         if (action.indexOf("sendKey") == 0 ) {
             div.append('<button id="' + action + '">' + action + '</button>');
-            //TODO: why this is not working ??? ask guru, hm ... grze do you know ?
-            //div.find("button#"+action).bind("click", function(e) { controller[action](); })
+            div.find("button#"+action).bind("click", getActionClickHandler(action))
         }
     }
+}
+
+var getActionClickHandler = function (action) {
+  return function () { controller[action]() }
 }
