@@ -8,12 +8,16 @@
   <body>
     <div class="container">
       <h1>Remote for your netia player</h1>
+      <button id="discovery">Auto-discovery</button>
+      if doesn't work then configure on your own:<br/>
       Host: <input type="text" id="host">
       Port: <input type="text" id="port" value="5678">
-      <button id="custom_controller">Save</button>
-      <button id="discovery">or discover netia player</button>
+      <button id="custom_controller">Apply</button>
+      <br/>
       <output class="console">
-        <div class="progress"></div>
+        <strong>Select desire device:</strong>
+        <div class="devices">
+        </div>
         <div class="controller"></div>
       </output>
     </div>
